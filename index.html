@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ののーと（nonote）のサポートページ。よくある質問とお問い合わせ。">
+<meta name="theme-color" content="#0E1A33">
+<title>ののーと — サポート</title>
+<link rel="icon" href="./icon.png">
+<link rel="apple-touch-icon" href="./icon.png">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+
+:root {
+  --night: #0E1A33;
+  --night-2: #13223F;
+  --night-3: #1A2C4E;
+  --rim: #3A4C72;
+  --cream: #F7ECCF;
+  --paper: #FBF4E2;
+  --paper-ink: #1B2C4F;
+  --paper-muted: #5A6480;
+  --dim: #B8BCCB;
+  --faint: #8790A8;
+  --gold: #F5C77C;
+  --gold-deep: #E0A44A;
+  --coral: #F06A4F;
+  --violet: #8E78D8;
+  --round: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+  --body: 'Zen Kaku Gothic New', 'Hiragino Sans', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { color-scheme: dark; scroll-behavior: smooth; }
+body {
+  font-family: var(--body); background: var(--night); color: var(--cream);
+  line-height: 1.85; -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--gold); color: var(--paper-ink); }
+a { color: var(--gold); text-underline-offset: 3px; }
+
+/* ───────── 夜景のヒーロー ───────── */
+.hero {
+  position: relative; overflow: hidden; text-align: center;
+  padding: 64px 16px 120px;
+  background:
+    linear-gradient(180deg, rgba(14,26,51,.15) 0%, rgba(14,26,51,.05) 55%, var(--night) 100%),
+    url('./night.webp') center 62% / cover no-repeat, var(--night);
+}
+.lang {
+  position: absolute; top: 16px; right: 16px; z-index: 3;
+  font-family: var(--round); font-weight: 700; font-size: 13px; letter-spacing: .04em;
+  color: var(--cream); text-decoration: none; padding: 6px 14px;
+  border: 1.5px solid rgba(245,199,124,.55); border-radius: 999px;
+  background: rgba(14,26,51,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.lang:hover { border-color: var(--gold); color: var(--gold); }
+.logo { width: min(440px, 86vw); height: auto; display: block; margin: 0 auto; position: relative; z-index: 2;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.45)); animation: rise .9s cubic-bezier(.2,.8,.3,1) both; }
+.hero h1 {
+  position: relative; z-index: 2; margin-top: 18px;
+  font-family: var(--round); font-weight: 900; font-size: clamp(26px, 6vw, 34px); letter-spacing: .08em;
+  text-shadow: 0 2px 18px rgba(0,0,0,.6); animation: rise .9s .1s cubic-bezier(.2,.8,.3,1) both;
+}
+.hero .tagline { position: relative; z-index: 2; color: var(--dim); font-size: 15px; margin-top: 4px;
+  text-shadow: 0 1px 10px rgba(0,0,0,.7); animation: rise .9s .18s both; }
+.hero .stamp {
+  position: relative; z-index: 2; display: inline-block; margin-top: 16px; padding: 3px 14px;
+  font-family: var(--round); font-weight: 700; font-size: 12px; letter-spacing: .1em; color: var(--gold);
+  border: 1.5px solid rgba(245,199,124,.6); border-radius: 6px; background: rgba(14,26,51,.5);
+  animation: rise .9s .24s both;
+}
+/* 灯りのマスがゆっくり瞬く */
+.cells { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.cells i {
+  position: absolute; width: 12px; height: 12px; border-radius: 3px; opacity: 0;
+  box-shadow: 0 0 14px currentColor; background: currentColor;
+  animation: blink 5.5s ease-in-out infinite;
+}
+.cells i:nth-child(1) { left: 9%;  top: 22%; color: var(--coral);  animation-delay: .2s; }
+.cells i:nth-child(2) { left: 18%; top: 58%; color: var(--gold);   animation-delay: 1.4s; width: 9px; height: 9px; }
+.cells i:nth-child(3) { left: 84%; top: 18%; color: var(--violet); animation-delay: 2.1s; }
+.cells i:nth-child(4) { left: 90%; top: 52%; color: var(--gold);   animation-delay: .8s; width: 9px; height: 9px; }
+.cells i:nth-child(5) { left: 72%; top: 70%; color: var(--coral);  animation-delay: 3.2s; width: 8px; height: 8px; }
+.cells i:nth-child(6) { left: 28%; top: 12%; color: var(--cream);  animation-delay: 2.7s; width: 7px; height: 7px; }
+@keyframes blink { 0%, 100% { opacity: 0; transform: translateY(6px) scale(.8); } 40%, 60% { opacity: .9; transform: none; } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ───────── 金の五線と目次 ───────── */
+.staff { position: relative; max-width: 760px; margin: -70px auto 0; padding: 0 16px; z-index: 2; }
+.staff svg { display: block; width: 100%; height: 46px; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 6px; }
+.toc a {
+  font-family: var(--round); font-weight: 700; font-size: 13px; color: var(--cream); text-decoration: none;
+  padding: 6px 14px; border-radius: 999px; background: var(--night-2); border: 1px solid var(--rim);
+}
+.toc a:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ───────── 本文 ───────── */
+main { max-width: 760px; margin: 0 auto; padding: 8px 16px 32px; }
+.section { padding-top: 48px; }
+.head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+/* 見出しの前に、ロジックの数字と塗りかけの列 */
+.clue { display: flex; gap: 4px; flex-shrink: 0; }
+.clue b { width: 14px; height: 14px; border-radius: 3px; background: var(--night-3); border: 1px solid var(--rim); }
+.clue b.on { background: var(--coral); border-color: var(--coral); }
+.clue b.on.g { background: var(--gold); border-color: var(--gold); }
+.clue b.on.v { background: var(--violet); border-color: var(--violet); }
+.head h2 { font-family: var(--round); font-weight: 900; font-size: 22px; letter-spacing: .04em; line-height: 1.4; }
+.head .num { font-family: var(--round); font-weight: 700; color: var(--faint); font-size: 12px; letter-spacing: .14em; display: block; }
+
+/* 生成りのカード（アプリの曲集カードと同じ紙） */
+.card {
+  background: var(--paper); color: var(--paper-ink); border-radius: 14px; padding: 18px 20px;
+  border: 1.5px solid var(--gold-deep); box-shadow: 0 0 0 4px rgba(245,199,124,.08), 0 10px 26px rgba(0,0,0,.28);
+}
+.card + .card { margin-top: 12px; }
+.card h3 { display: flex; align-items: flex-start; gap: 12px; font-family: var(--round); font-weight: 700; font-size: 16px; line-height: 1.6; }
+.card h3 .cell {
+  flex-shrink: 0; width: 26px; height: 26px; margin-top: 1px; border-radius: 6px;
+  display: grid; place-items: center; font-size: 12px; font-weight: 900; color: var(--paper);
+  background: var(--paper-ink);
+}
+.card:nth-child(3n+1) h3 .cell { background: var(--coral); }
+.card:nth-child(3n+2) h3 .cell { background: var(--gold-deep); }
+.card:nth-child(3n) h3 .cell { background: var(--violet); }
+.card p { color: var(--paper-muted); font-size: 14.5px; margin: 6px 0 0 38px; }
+.card p strong { color: var(--paper-ink); }
+.card a { color: #9C4F2D; font-weight: 700; }
+
+/* 本文のまとまり（プライバシー） */
+.prose p { color: var(--dim); font-size: 15px; }
+.prose p + p { margin-top: 10px; }
+.prose strong { color: var(--cream); }
+.lamp {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: linear-gradient(135deg, rgba(245,199,124,.16), rgba(240,106,79,.08));
+  border: 1.5px solid rgba(245,199,124,.55); border-radius: 14px; padding: 18px 20px;
+}
+.lamp svg { flex-shrink: 0; width: 28px; height: 28px; color: var(--gold); margin-top: 2px; }
+.lamp p { color: var(--cream); font-size: 15px; font-weight: 500; }
+
+/* ───────── オルゴールの紙（フォーム） ───────── */
+.strip {
+  position: relative; background: var(--paper); color: var(--paper-ink); border-radius: 6px;
+  padding: 34px 22px 22px; border: 1.5px solid var(--gold-deep);
+}
+.strip::before {
+  content: ''; position: absolute; left: 14px; right: 14px; top: 10px; height: 8px;
+  background: radial-gradient(circle, var(--night) 3px, transparent 3.5px) 0 0 / 18px 8px repeat-x;
+  opacity: .85;
+}
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 13px; font-weight: 700; color: var(--paper-muted); margin-bottom: 6px; }
+.field .req { color: var(--coral); margin-left: 6px; font-size: 11px; }
+.field input, .field textarea {
+  width: 100%; font: inherit; font-size: 15px; color: var(--paper-ink);
+  background: #fff; border: 1.5px solid #DDD0B2; border-radius: 10px; padding: 10px 12px;
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--paper-ink); }
+.field textarea { min-height: 150px; resize: vertical; }
+.hp { position: absolute; left: -5000px; width: 1px; height: 1px; opacity: 0; }
+.submit {
+  font-family: var(--round); font-weight: 900; font-size: 15px; letter-spacing: .06em; cursor: pointer;
+  color: var(--paper); background: var(--paper-ink); border: none; border-radius: 999px; padding: 12px 30px;
+  box-shadow: 0 4px 0 #0A1428;
+}
+.submit:hover { background: #24396A; }
+.submit:active { transform: translateY(2px); box-shadow: 0 2px 0 #0A1428; }
+.submit:disabled { opacity: .55; cursor: default; }
+.form-status { display: inline-block; margin-left: 12px; font-size: 14px; font-weight: 700; color: #2E7D5B; }
+.form-status.err { color: #C0483B; }
+.alts { margin-top: 14px; font-size: 13.5px; color: var(--faint); }
+
+/* ───────── 水面の灯り（フッター） ───────── */
+.footer { text-align: center; padding: 40px 16px 36px; margin-top: 40px; position: relative; }
+.footer::before {
+  content: ''; position: absolute; left: 50%; top: 0; width: min(520px, 90%); height: 16px; transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse 20px 4px at 8% 30%, rgba(245,199,124,.8), transparent 70%),
+    radial-gradient(ellipse 28px 4px at 24% 70%, rgba(240,106,79,.6), transparent 70%),
+    radial-gradient(ellipse 16px 3px at 41% 35%, rgba(142,120,216,.7), transparent 70%),
+    radial-gradient(ellipse 30px 4px at 58% 65%, rgba(245,199,124,.7), transparent 70%),
+    radial-gradient(ellipse 18px 3px at 76% 30%, rgba(247,236,207,.5), transparent 70%),
+    radial-gradient(ellipse 24px 4px at 92% 70%, rgba(240,106,79,.55), transparent 70%);
+  animation: shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+.footer-links { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; margin-bottom: 8px; }
+.footer-links a { font-family: var(--round); font-weight: 700; font-size: 13px; text-decoration: none; }
+.footer .copy { color: var(--faint); font-size: 12px; }
+
+@media (max-width: 560px) {
+  .hero { padding: 58px 16px 110px; }
+  .card p { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before { animation: none !important; transition: none !important; }
+  .cells i { opacity: .7; }
+}
+@media print {
+  body { background: #fff; color: #111; }
+  .hero { background: none; padding: 20px; }
+  .cells, .lang, .toc, .staff svg, .footer::before { display: none; }
+  .prose p, .lamp p { color: #222; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <a class="lang" href="./en/" lang="en">English</a>
+  <div class="cells" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <img class="logo" src="./logo.webp" alt="ののーと nonote" width="960" height="410">
+  <h1>サポート</h1>
+  <p class="tagline">絵を解くと、音楽ができる。</p>
+</header>
+
+<div class="staff">
+  <svg viewBox="0 0 760 46" preserveAspectRatio="none" aria-hidden="true">
+  <g stroke="#F5C77C" stroke-opacity=".55" stroke-width="1.2" fill="none">
+    <path d="M0 9 C190 2 380 16 760 7"/><path d="M0 16 C190 9 380 23 760 14"/><path d="M0 23 C190 16 380 30 760 21"/>
+    <path d="M0 30 C190 23 380 37 760 28"/><path d="M0 37 C190 30 380 44 760 35"/>
+  </g>
+  <g fill="#F5C77C"><ellipse cx="214" cy="19" rx="6" ry="4.5" transform="rotate(-20 214 19)"/><rect x="219" y="1" width="1.6" height="18"/>
+    <ellipse cx="548" cy="24" rx="6" ry="4.5" transform="rotate(-20 548 24)"/><rect x="553" y="6" width="1.6" height="18"/></g>
+  <rect x="120" y="22" width="8" height="8" rx="2" fill="#F06A4F"/><rect x="380" y="14" width="8" height="8" rx="2" fill="#8E78D8"/>
+  <rect x="640" y="17" width="8" height="8" rx="2" fill="#F7ECCF"/>
+</svg>
+  <nav class="toc"><a href="#faq">よくある質問</a><a href="#contact">お問い合わせ</a></nav>
+</div>
+
+<main>
+
+    <section class="section" id="faq">
+      <div class="head"><span class="clue" aria-hidden="true"><b class="on"></b><b class="on"></b><b class=""></b><b class="on g"></b></span><h2><span class="num">FAQ</span>よくある質問</h2></div>
+      <div>
+        <div class="card"><h3><span class="cell">1</span>遊び方がわかりません</h3><p>マスをタップするか、なぞって塗ります。ダブルタップで×を付けます。行と列の数字は、その列で続けて塗るマスの数です。<strong>設定 → 解き方の見本</strong> でいつでも練習できます。</p></div>
+        <div class="card"><h3><span class="cell">2</span>問題の合間の広告を消したい</h3><p><strong>設定 → 広告を消す</strong> を一度購入すると、次の問題へ進むときの動画広告と画面下のバナーが出なくなり、ヒントも回数を気にせず使えます。同じ Apple ID の別の iPhone でも、<strong>購入を復元</strong> で引き継げます。</p></div>
+        <div class="card"><h3><span class="cell">3</span>購入した内容が反映されません</h3><p>アプリを開き直してください。それでも反映されないときは <strong>設定 → 購入を復元</strong> を押してください。返金は Apple への申請になり、返金されるとその購入で開いた内容は使えなくなります。</p></div>
+        <div class="card"><h3><span class="cell">4</span>遊ぶのにお金はかかりますか？</h3><p>いいえ。最初の猫、すべての曲、遊び方は無料です。ヒントも毎日3回まで無料で、使い切ったら短い動画を見ると追加できます。購入できるのは、猫をもう1匹同時に出す枠や広告を消すなどの追加分だけです。</p></div>
+        <div class="card"><h3><span class="cell">5</span>機種変更で集めた曲を引き継ぎたい</h3><p>新しい iPhone で同じ Apple ID の iCloud にサインインすると、集めた曲が自動で戻ります。</p></div>
+        <div class="card"><h3><span class="cell">6</span>ランキングに参加したい／やめたい</h3><p><strong>設定 → Game Center のランキング</strong> をオンにすると参加します。オフにすると、それ以降は記録を送りません。</p></div>
+        <div class="card"><h3><span class="cell">7</span>データを消したい</h3><p>アプリを削除すると、端末内のデータはすべて消えます。iCloud に残った記録は iOS の「設定 → Apple ID → iCloud」から管理できます。詳しくは<a href="https://kizzz9.github.io/nonote-privacy-policy/">プライバシーポリシー</a>へ。</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="head"><span class="clue" aria-hidden="true"><b class="on v"></b><b class=""></b><b class="on"></b><b class="on"></b></span><h2><span class="num">CONTACT</span>お問い合わせ</h2></div>
+      <form class="strip" id="contact-form">
+        <div class="field"><label for="cf-name">お名前（任意）</label><input id="cf-name" name="name" type="text" maxlength="100" autocomplete="name"></div>
+        <div class="field"><label for="cf-email">返信用メールアドレス（任意・返信をご希望の場合）</label><input id="cf-email" name="email" type="email" maxlength="200" autocomplete="email"></div>
+        <div class="field"><label for="cf-message">内容<span class="req">必須</span></label><textarea id="cf-message" name="message" maxlength="5000" required></textarea></div>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><div class="cf-turnstile" data-sitekey="0x4AAAAAADv-5iOVlinTmIvp" data-theme="light" data-language="ja"></div></div>
+        <button type="submit" class="submit">送信する</button>
+        <p class="form-status" id="form-status" role="status"></p>
+      </form>
+      <p class="alts">送信内容は開発者へのメール転送だけに使います。</p>
+    </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="https://kizzz9.github.io/nonote-privacy-policy/">プライバシーポリシー</a>
+    <a href="#contact">お問い合わせ</a>
+  </div>
+  <p class="copy">&copy; 2026 nonote</p>
+</footer>
+<script>
+(() => {
+  const ENDPOINT = "https://nonote-contact.nsmtkz9.workers.dev";
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+  const button = form.querySelector(".submit");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const token = form.querySelector('[name="cf-turnstile-response"]')?.value ?? "";
+    const message = form.message.value.trim();
+    status.classList.remove("err");
+    if (!message) { status.textContent = "内容を入力してください"; status.classList.add("err"); return; }
+    if (form.querySelector(".cf-turnstile") && !token) { status.textContent = "ロボットでないことの確認を完了してください"; status.classList.add("err"); return; }
+    button.disabled = true;
+    status.textContent = "送信中…";
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name.value, email: form.email.value, message, token, website: form.website.value, lang: "ja" }),
+      });
+      const body = await res.json();
+      if (!body.ok) throw new Error(body.error);
+      form.reset();
+      status.textContent = "送信しました。ありがとうございます！";
+    } catch {
+      status.textContent = "送信に失敗しました。時間をおいてお試しください";
+      status.classList.add("err");
+    } finally {
+      if (window.turnstile) turnstile.reset();
+      button.disabled = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
